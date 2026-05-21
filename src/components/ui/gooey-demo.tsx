@@ -5,6 +5,7 @@ import { PixelTrail } from './pixel-trail'
 import { GooeyFilter } from './gooey-filter'
 import { CustomCursor } from './custom-cursor'
 import { BouncingDots } from './bouncing-dots'
+import { Clock } from './clock'
 import { playClick } from '../../lib/sound'
 
 function GooeyDemo() {
@@ -34,8 +35,12 @@ function GooeyDemo() {
 
       <div className='relative w-full h-full min-h-[600px] flex flex-col items-center justify-center gap-8 bg-white text-center text-pretty'>
       <CustomCursor />
-      <p className='absolute top-4 left-4 z-10 text-black/50 text-[11px] tracking-normal leading-[1.1]'>
-        my personal space<br />built in 2026
+      <div className='absolute top-4 left-4 z-10 text-black text-[11px] tracking-normal leading-[1.1]'>
+        <p>my personal space</p>
+        <p className='mt-0.5'>built in 2026</p>
+      </div>
+      <p className='absolute top-4 right-4 z-10 text-black text-[11px] tracking-normal'>
+        <Clock />
       </p>
       <GooeyFilter id='gooey-filter-pixel-trail' strength={5} />
 

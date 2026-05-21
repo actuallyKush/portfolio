@@ -5,6 +5,7 @@ import { PixelTrail } from './pixel-trail'
 import { GooeyFilter } from './gooey-filter'
 import { CustomCursor } from './custom-cursor'
 import { BouncingDots } from './bouncing-dots'
+import { playClick } from '../../lib/sound'
 
 function GooeyDemo() {
   const screenSize = useScreenSize()
@@ -53,7 +54,7 @@ function GooeyDemo() {
       <div className='z-10'>
         <p
           className='text-black text-5xl md:text-7xl font-bold tracking-tighter leading-none'
-          onMouseEnter={() => setHovered(true)}
+          onMouseEnter={() => { setHovered(true); playClick() }}
           onMouseLeave={() => setHovered(false)}
         >
           actually

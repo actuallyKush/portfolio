@@ -2,11 +2,17 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const projects = [
   { title: 'Autonomous Drone', tags: 'ROS2, V-SLAM, MediaPipe, TensorFlow', desc: 'Full autonomous drone with monocular V-SLAM, gesture control via MediaPipe, and face recognition using Haar Cascades + TensorFlow for identity verification.' },
+  { title: 'actuallystems', tags: 'Python, ML, Audio', desc: 'CLI tool for music producers to separate audio into stems using machine learning. Free and open-source.' },
+  { title: 'IoT Edge Detection', tags: 'Python, IoT, Edge Computing', desc: 'Edge-based detection system processing sensor data locally on IoT devices for real-time inference.' },
   { title: 'UART Laser Transceiver', tags: 'FPGA, VHDL', desc: 'Designed a UART transmitter-receiver with integrated laser communication for real-time data transfer on Intel FPGA.' },
+  { title: 'NN Model Reduction', tags: 'Python, ML, Compression', desc: 'Neural network model reduction and compression techniques for efficient deployment on resource-constrained hardware.' },
+  { title: 'Ray Tracer', tags: 'C++, Graphics', desc: 'Ray tracing implementation from scratch, handling lighting, reflections, refractions, and shadow computation.' },
   { title: 'Line-Following Robot', tags: 'MSP430, PID, Embedded C', desc: 'Built a line-following robot integrating sensors, motor control, and PID-based navigation on MSP430.' },
   { title: 'RTOS Application', tags: 'MSP430, µC/OS-II, C', desc: 'Multitasking RTOS application on MSP430 with µC/OS-II and Sharp 96x96 LCD display.' },
   { title: 'FM Radio', tags: 'Circuit Design, PCB, Soldering', desc: 'Built an FM radio from scratch — circuit design, PCB layout, soldering, and hardware integration.' },
   { title: 'Song Lyrics Android App', tags: 'Kotlin, iTunes API, REST', desc: 'Native Android app that retrieves song lyrics online and integrates Apple iTunes Search API for 30-second audio previews.' },
+  { title: 'Slot Machine', tags: 'Python, Probability', desc: 'A basic biased slot machine simulation implementing probability-weighted outcomes and payout logic.' },
+  { title: 'Udacity DSA', tags: 'Python, Algorithms', desc: 'Solutions to Udacity\'s Data Structures and Algorithms course covering sorting, searching, graphs, and dynamic programming.' },
 ]
 
 function ProjectsModal({ open, onClose }: { open: boolean; onClose: () => void }) {

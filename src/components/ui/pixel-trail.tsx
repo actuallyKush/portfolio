@@ -15,7 +15,7 @@ interface PixelTrailProps {
 
 const PixelTrail: React.FC<PixelTrailProps> = ({
   pixelSize = 20,
-  fadeDuration = 500,
+  fadeDuration = 2000,
   delay = 0,
   className,
   pixelClassName,

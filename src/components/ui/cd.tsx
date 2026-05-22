@@ -4,30 +4,27 @@ import { motion } from 'framer-motion'
 function CD() {
   const [hovered, setHovered] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
-  const playingRef = useRef(false)
 
   const handleEnter = useCallback(() => {
     setHovered(true)
-    if (playingRef.current) return
-    playingRef.current = true
 
     if (!audioRef.current) {
-      audioRef.current = new Audio('/rivulets.mp3')
+      audioRef.current = new Audio('/roslyn.mp3')
       audioRef.current.loop = false
       audioRef.current.volume = 0.2
+      audioRef.current.currentTime = 4
     }
-    audioRef.current.currentTime = 35
-    audioRef.current.play().catch(() => {
-      playingRef.current = false
-    })
+
+    if (audioRef.current.ended) {
+      audioRef.current.currentTime = 4
+    }
+    audioRef.current.play().catch(() => {})
   }, [])
 
   const handleLeave = useCallback(() => {
     setHovered(false)
-    playingRef.current = false
     if (audioRef.current) {
       audioRef.current.pause()
-      audioRef.current.currentTime = 0
     }
   }, [])
 

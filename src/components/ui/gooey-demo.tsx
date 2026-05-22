@@ -86,25 +86,25 @@ function GooeyDemo() {
       </div>
       <nav className='absolute top-4 z-10 flex flex-col items-start text-black dark:text-white text-[11px] leading-[1.2] -translate-x-1/2' style={{ left: '25%' }}>
         <button
-          className='hover:bg-red-500 hover:text-white rounded-sm px-1.5 py-0.5 -mx-1.5 transition-colors p-0'
+          className='hover:text-red-500 transition-colors p-0'
           onClick={() => setAboutOpen(true)}
         >
           about me
         </button>
         <button
-          className='hover:bg-red-500 hover:text-white rounded-sm px-1.5 py-0.5 -mx-1.5 transition-colors p-0'
+          className='hover:text-red-500 transition-colors p-0'
           onClick={() => setProjectsOpen(true)}
         >
           projects
         </button>
         <button
-          className='hover:bg-red-500 hover:text-white rounded-sm px-1.5 py-0.5 -mx-1.5 transition-colors p-0'
+          className='hover:text-red-500 transition-colors p-0'
           onClick={() => setDownloadsOpen(true)}
         >
           downloads
         </button>
         <button
-          className='hover:bg-red-500 hover:text-white rounded-sm px-1.5 py-0.5 -mx-1.5 transition-colors p-0'
+          className='hover:text-red-500 transition-colors p-0'
           onClick={() => setContactOpen(true)}
         >
 let's talk

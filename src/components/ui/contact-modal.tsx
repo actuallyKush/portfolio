@@ -6,18 +6,20 @@ function ContactModal({ open, onClose }: { open: boolean; onClose: () => void })
       {open && (
         <motion.div
           className='fixed inset-0 z-[9999] flex items-center justify-center p-4'
+          style={{ perspective: '1200px' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.3 }}
         >
           <div className='absolute inset-0 bg-black/20 backdrop-blur-sm' onClick={onClose} />
           <motion.div
             className='relative w-full max-w-sm bg-white rounded-lg shadow-xl p-6'
-            initial={{ scale: 0.95, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.95, opacity: 0, y: 20 }}
-            transition={{ duration: 0.2 }}
+            style={{ transformOrigin: 'top center' }}
+            initial={{ rotateX: -90, opacity: 0 }}
+            animate={{ rotateX: 0, opacity: 1 }}
+            exit={{ rotateX: -90, opacity: 0 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
             <button
               className='absolute top-4 right-4 text-black/30 hover:text-black transition-colors text-lg leading-none'

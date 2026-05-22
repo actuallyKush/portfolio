@@ -10,6 +10,7 @@ import { CD } from './cd'
 import { MagneticDock } from './magnetic-dock'
 import { MenuToggleIcon } from './menu-toggle-icon'
 import { ThemeToggle } from './theme-toggle'
+import { TextEffect } from './text-effect'
 import { AboutModal } from './about-modal'
 import { ContactModal } from './contact-modal'
 import { DownloadsModal } from './downloads-modal'
@@ -18,7 +19,7 @@ import { ProjectsModal } from './projects-modal'
 function GooeyDemo() {
   const screenSize = useScreenSize()
   const [phase, setPhase] = useState<'asterisk' | 'question' | 'kush'>('asterisk')
-  const [jpFocused, setJpFocused] = useState(false)
+  const [showJp, setShowJp] = useState(true)
   const [loading, setLoading] = useState(true)
   const [aboutOpen, setAboutOpen] = useState(false)
   const [contactOpen, setContactOpen] = useState(false)
@@ -41,6 +42,12 @@ function GooeyDemo() {
   useEffect(() => {
     document.documentElement.classList.toggle('dark', dark)
   }, [dark])
+
+  useEffect(() => {
+    if (loading) return
+    const t = setInterval(() => setShowJp(p => !p), 3000)
+    return () => clearInterval(t)
+  }, [loading])
 
   useEffect(() => {
     if (loading) return
@@ -79,28 +86,28 @@ function GooeyDemo() {
       </div>
       <nav className='absolute top-4 z-10 flex flex-col items-start text-black dark:text-white text-[11px] leading-[1.2] -translate-x-1/2' style={{ left: '25%' }}>
         <button
-          className='hover:text-red-500 transition-colors p-0'
+          className='hover:bg-red-500 hover:text-white rounded-sm px-1.5 py-0.5 -mx-1.5 transition-colors p-0'
           onClick={() => setAboutOpen(true)}
         >
           about me
         </button>
         <button
-          className='hover:text-red-500 transition-colors p-0'
+          className='hover:bg-red-500 hover:text-white rounded-sm px-1.5 py-0.5 -mx-1.5 transition-colors p-0'
           onClick={() => setProjectsOpen(true)}
         >
           projects
         </button>
         <button
-          className='hover:text-red-500 transition-colors p-0'
+          className='hover:bg-red-500 hover:text-white rounded-sm px-1.5 py-0.5 -mx-1.5 transition-colors p-0'
           onClick={() => setDownloadsOpen(true)}
         >
           downloads
         </button>
         <button
-          className='hover:text-red-500 transition-colors p-0'
+          className='hover:bg-red-500 hover:text-white rounded-sm px-1.5 py-0.5 -mx-1.5 transition-colors p-0'
           onClick={() => setContactOpen(true)}
         >
-          contact
+let's talk
         </button>
       </nav>
       <GooeyFilter id='gooey-filter-pixel-trail' strength={5} />
@@ -157,41 +164,36 @@ function GooeyDemo() {
             )}
           </AnimatePresence>
         </p>
-        <p
-          className='relative text-sm md:text-base mt-2 tracking-wider cursor-pointer'
-          onMouseEnter={() => setJpFocused(true)}
-          onMouseLeave={() => setJpFocused(false)}
-        >
+        <p className='relative text-sm md:text-base mt-2 tracking-wider'>
           <AnimatePresence mode='wait'>
-            {!jpFocused ? (
-              <motion.span
+            {showJp ? (
+              <TextEffect
                 key='jp'
+                preset='blur'
+                per='char'
                 className='text-red-500'
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.2 }}
+                as='span'
               >
                 クシュ デオガレ
-              </motion.span>
+              </TextEffect>
             ) : (
-              <motion.span
+              <TextEffect
                 key='en'
+                preset='blur'
+                per='char'
                 className='text-black dark:text-white lowercase'
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.2 }}
+                as='span'
               >
                 kush deoghare
-              </motion.span>
+              </TextEffect>
             )}
           </AnimatePresence>
         </p>
         <p className='mt-5 text-xs text-black/50 dark:text-white/50 italic tracking-normal leading-[1.6] max-w-[400px] mx-auto'>
           creative technologist<br />
-          msc electronics & embedded systems @ esigelec '27 · france<br />
-          designer · programmer · artist
+          msc electronics & embedded systems @ esigelec '26<br />
+          designer · programmer · artist<br />
+          based in france
         </p>
       </div>
       <div className='absolute bottom-4 right-4 z-10 flex flex-col items-center gap-2'>

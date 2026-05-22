@@ -113,7 +113,7 @@ function GooeyDemo() {
           pixelSize={screenSize.lessThan('md') ? 24 : 32}
           fadeDuration={2000}
           delay={0}
-          pixelClassName='bg-black'
+          pixelClassName='bg-black dark:bg-white'
         />
       </div>
 
@@ -188,6 +188,11 @@ function GooeyDemo() {
             )}
           </AnimatePresence>
         </p>
+        <p className='mt-5 text-xs text-black/50 dark:text-white/50 italic tracking-normal leading-[1.6] max-w-[400px] mx-auto'>
+          creative technologist<br />
+          msc electronics & embedded systems @ esigelec '27 · france<br />
+          designer · programmer · artist
+        </p>
       </div>
       <div className='absolute bottom-4 right-4 z-10 flex flex-col items-center gap-2'>
         <motion.div
@@ -204,7 +209,11 @@ function GooeyDemo() {
       <div className='absolute bottom-4 left-4 z-10'>
         <MagneticDock />
       </div>
-      <div className='absolute bottom-4 left-1/2 -translate-x-1/2 z-10 cursor-pointer'>
+      <motion.div
+        className='absolute bottom-4 left-1/2 -translate-x-1/2 z-10 cursor-pointer'
+        animate={{ y: [0, -6, 0] }}
+        transition={{ duration: 0.5, repeat: Infinity, ease: 'easeInOut' }}
+      >
         <MenuToggleIcon open={menuOpen} onClick={() => {
           const next = !menuOpen
           setMenuOpen(next)
@@ -214,15 +223,19 @@ function GooeyDemo() {
             window.scrollTo({ top: 0, behavior: 'smooth' })
           }
         }} className='w-7 h-7 text-black/50 dark:text-white/50 hover:text-black dark:hover:text-white transition-colors' />
-      </div>
+      </motion.div>
       </div>
       <section id='section-2' className='relative h-screen w-full flex flex-col items-center justify-center bg-white dark:bg-neutral-950 text-black dark:text-white'>
-        <div className='absolute top-4 left-1/2 -translate-x-1/2 z-10 cursor-pointer'>
+        <motion.div
+          className='absolute top-4 left-1/2 -translate-x-1/2 z-10 cursor-pointer'
+          animate={{ y: [0, -6, 0] }}
+          transition={{ duration: 0.5, repeat: Infinity, ease: 'easeInOut' }}
+        >
           <MenuToggleIcon open={true} onClick={() => {
             setMenuOpen(false)
             window.scrollTo({ top: 0, behavior: 'smooth' })
           }} className='w-7 h-7 text-black/50 dark:text-white/50 hover:text-black dark:hover:text-white transition-colors' />
-        </div>
+        </motion.div>
         <p className='text-lg tracking-tight'>more content coming soon</p>
         <footer className='absolute bottom-0 left-0 right-0 flex flex-col items-center gap-3 pb-4 pt-8 px-6'>
           <div className='w-1/2 h-px bg-gradient-to-r from-transparent via-black/20 dark:via-white/20 to-transparent' />

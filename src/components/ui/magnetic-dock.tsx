@@ -48,7 +48,7 @@ function DockIcon({ icon, url }: { icon: React.ReactNode; url: string }) {
     <motion.div
       ref={ref}
       style={{ width: springW }}
-      className='aspect-square rounded-full bg-black/5 grid place-items-center cursor-pointer'
+      className='aspect-square rounded-full bg-black/5 dark:bg-white/10 grid place-items-center cursor-pointer'
       onClick={() => window.open(url, '_blank', 'noopener,noreferrer')}
     >
       {icon}
@@ -74,7 +74,7 @@ function MagneticDock() {
       <div
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
-        className='flex items-end gap-3 text-black'
+        className='flex items-end gap-3 text-black dark:text-white'
       >
         <DockIcon icon={<GithubIcon />} url='https://github.com/actuallyKush' />
         <DockIcon icon={<LinkedinIcon />} url='https://linkedin.com/in/actuallykush' />

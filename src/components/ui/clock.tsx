@@ -11,12 +11,12 @@ function Clock() {
   const pad = (n: number) => n.toString().padStart(2, '0')
   const h = time.getHours()
   const h12 = h % 12 || 12
-  const ampm = h < 12 ? 'AM' : 'PM'
+  const ampm = h < 12 ? 'am' : 'pm'
   const tz = time.toLocaleTimeString('en', { timeZoneName: 'short' }).split(' ').pop()
 
   return (
     <span className='tabular-nums'>
-      {tz} {h12}:{pad(time.getMinutes())}:{pad(time.getSeconds())} {ampm}
+      <span className='text-red-500'>{tz}</span> {h12}:{pad(time.getMinutes())}:{pad(time.getSeconds())} {ampm}
     </span>
   )
 }

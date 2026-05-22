@@ -7,12 +7,20 @@ import { CustomCursor } from './custom-cursor'
 import { BouncingDots } from './bouncing-dots'
 import { Clock } from './clock'
 import { CD } from './cd'
+import { AboutModal } from './about-modal'
+import { ContactModal } from './contact-modal'
+import { DownloadsModal } from './downloads-modal'
+import { ProjectsModal } from './projects-modal'
 
 function GooeyDemo() {
   const screenSize = useScreenSize()
   const [showAsterisk, setShowAsterisk] = useState(true)
   const [jpFocused, setJpFocused] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [aboutOpen, setAboutOpen] = useState(false)
+  const [contactOpen, setContactOpen] = useState(false)
+  const [downloadsOpen, setDownloadsOpen] = useState(false)
+  const [projectsOpen, setProjectsOpen] = useState(false)
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1500)
@@ -49,6 +57,32 @@ function GooeyDemo() {
       <p className='absolute top-4 right-4 z-10 text-black text-[11px] tracking-normal'>
         <Clock />
       </p>
+      <nav className='absolute top-4 z-10 flex flex-col items-start text-black text-[11px] leading-[1.2] -translate-x-1/2' style={{ left: '25%' }}>
+        <button
+          className='hover:text-red-500 transition-colors p-0'
+          onClick={() => setAboutOpen(true)}
+        >
+          about me
+        </button>
+        <button
+          className='hover:text-red-500 transition-colors p-0'
+          onClick={() => setProjectsOpen(true)}
+        >
+          projects
+        </button>
+        <button
+          className='hover:text-red-500 transition-colors p-0'
+          onClick={() => setDownloadsOpen(true)}
+        >
+          downloads
+        </button>
+        <button
+          className='hover:text-red-500 transition-colors p-0'
+          onClick={() => setContactOpen(true)}
+        >
+          contact
+        </button>
+      </nav>
       <GooeyFilter id='gooey-filter-pixel-trail' strength={5} />
 
       <div
@@ -124,10 +158,22 @@ function GooeyDemo() {
           </AnimatePresence>
         </p>
       </div>
-      <div className='absolute bottom-4 right-4 z-10'>
+      <div className='absolute bottom-4 right-4 z-10 flex flex-col items-center gap-2'>
+        <motion.img
+  src='/macfolder.png'
+  alt='folder'
+  className='w-[90px] h-[90px] object-contain -translate-y-[40%]'
+  initial={{ rotate: 20 }}
+  whileHover={{ rotate: 0 }}
+  transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+/>
         <CD />
       </div>
       </div>
+      <AboutModal open={aboutOpen} onClose={() => setAboutOpen(false)} />
+      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
+      <ProjectsModal open={projectsOpen} onClose={() => setProjectsOpen(false)} />
+      <DownloadsModal open={downloadsOpen} onClose={() => setDownloadsOpen(false)} />
     </Fragment>
   )
 }

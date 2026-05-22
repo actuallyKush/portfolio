@@ -6,6 +6,7 @@ import { GooeyFilter } from './gooey-filter'
 import { CustomCursor } from './custom-cursor'
 import { BouncingDots } from './bouncing-dots'
 import { Clock } from './clock'
+import { CD } from './cd'
 import { playClick } from '../../lib/sound'
 
 function GooeyDemo() {
@@ -95,6 +96,9 @@ function GooeyDemo() {
         <p className='text-black/50 text-sm md:text-base mt-2 tracking-wider uppercase'>
           クシュ デオガレ
         </p>
+      </div>
+      <div className='absolute bottom-4 right-4 z-10'>
+        <CD />
       </div>
       </div>
     </Fragment>

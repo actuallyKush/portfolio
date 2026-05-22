@@ -7,17 +7,23 @@ import { CustomCursor } from './custom-cursor'
 import { BouncingDots } from './bouncing-dots'
 import { Clock } from './clock'
 import { CD } from './cd'
-import { playClick } from '../../lib/sound'
 
 function GooeyDemo() {
   const screenSize = useScreenSize()
-  const [hovered, setHovered] = useState(false)
+  const [showAsterisk, setShowAsterisk] = useState(true)
+  const [jpFocused, setJpFocused] = useState(false)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1500)
     return () => clearTimeout(timer)
   }, [])
+
+  useEffect(() => {
+    if (loading) return
+    const t = setTimeout(() => setShowAsterisk(!showAsterisk), showAsterisk ? 2400 : 2000)
+    return () => clearTimeout(t)
+  }, [loading, showAsterisk])
 
   return (
     <Fragment>
@@ -58,25 +64,18 @@ function GooeyDemo() {
       </div>
 
       <div className='z-10'>
-        <p
-          className='text-black text-5xl md:text-7xl font-bold tracking-tighter leading-none'
-          onMouseEnter={() => { setHovered(true); playClick() }}
-          onMouseLeave={() => setHovered(false)}
-        >
+        <p className='text-black text-5xl md:text-7xl font-bold tracking-tighter leading-none'>
           actually
           <AnimatePresence mode='wait'>
-            {!hovered ? (
+            {showAsterisk ? (
               <motion.span
                 key='asterisk'
                 animate={{
-                  opacity: [1, 0],
-                  transition: { duration: 0.8, repeat: Infinity, ease: 'easeInOut' },
+                  opacity: [1, 0, 1, 0, 1],
+                  scale: [1, 1, 1, 1, 0],
+                  rotate: [0, 0, 0, 0, 360],
                 }}
-                exit={{
-                  rotate: 360,
-                  opacity: 0,
-                  transition: { duration: 0.2, ease: 'easeInOut' },
-                }}
+                transition={{ duration: 2.4, ease: 'easeInOut', times: [0, 0.25, 0.5, 0.75, 1] }}
               >
                 *
               </motion.span>
@@ -84,17 +83,45 @@ function GooeyDemo() {
               <motion.span
                 key='kush'
                 className='text-black/50'
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.15 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
               >
                 kush
               </motion.span>
             )}
           </AnimatePresence>
         </p>
-        <p className='text-black/50 text-sm md:text-base mt-2 tracking-wider uppercase'>
-          クシュ デオガレ
+        <p
+          className='relative text-sm md:text-base mt-2 tracking-wider cursor-pointer'
+          onMouseEnter={() => setJpFocused(true)}
+          onMouseLeave={() => setJpFocused(false)}
+        >
+          <AnimatePresence mode='wait'>
+            {!jpFocused ? (
+              <motion.span
+                key='jp'
+                className='text-red-500'
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.2 }}
+              >
+                クシュ デオガレ
+              </motion.span>
+            ) : (
+              <motion.span
+                key='en'
+                className='text-black lowercase'
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.2 }}
+              >
+                kush deoghare
+              </motion.span>
+            )}
+          </AnimatePresence>
         </p>
       </div>
       <div className='absolute bottom-4 right-4 z-10'>
